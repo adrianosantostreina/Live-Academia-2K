@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{CBBF644C-7D2B-42BC-9D56-03B83B540C78}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="horse\srvLive2k.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="mobile\MobileLive2k.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="vcl\VCLLive2k.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="srvLive2k">
+        <MSBuild Projects="horse\srvLive2k.dproj"/>
+    </Target>
+    <Target Name="srvLive2k:Clean">
+        <MSBuild Projects="horse\srvLive2k.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="srvLive2k:Make">
+        <MSBuild Projects="horse\srvLive2k.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MobileLive2k">
+        <MSBuild Projects="mobile\MobileLive2k.dproj"/>
+    </Target>
+    <Target Name="MobileLive2k:Clean">
+        <MSBuild Projects="mobile\MobileLive2k.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MobileLive2k:Make">
+        <MSBuild Projects="mobile\MobileLive2k.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLLive2k">
+        <MSBuild Projects="vcl\VCLLive2k.dproj"/>
+    </Target>
+    <Target Name="VCLLive2k:Clean">
+        <MSBuild Projects="vcl\VCLLive2k.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLLive2k:Make">
+        <MSBuild Projects="vcl\VCLLive2k.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="srvLive2k;MobileLive2k;VCLLive2k"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="srvLive2k:Clean;MobileLive2k:Clean;VCLLive2k:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="srvLive2k:Make;MobileLive2k:Make;VCLLive2k:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
